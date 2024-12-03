@@ -1,0 +1,5 @@
+max_length 7
+start_letters abc
+min_length 3
+index_to_choose 24
+max_attempts 6

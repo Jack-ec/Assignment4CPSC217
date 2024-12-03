@@ -1,0 +1,5 @@
+max_attempts 5
+start_letters egv
+max_length 7
+min_length 3
+index_to_choose 2
