@@ -1,24 +1,24 @@
 # Jack Chidlaw, UCID:30187692, Hangman game, Assignment 4
-import random
+import random #used later
 
 
 def get_file_names():
     try:
-        with open("file_names.txt", "r") as file:
-            content = file.read()
+        with open("file_names.txt", "r") as file: # open file with name file_names.txt, split contents into a list
+            content = file.read()                 # assign the names of files accordingly based on index
             content = content.split()
             words_file_name = str(content[0].strip())
             config_file_name = str(content[1].strip())
             score_file_name = str(content[2].strip())
         return words_file_name, config_file_name, score_file_name
-    except FileNotFoundError:
+    except FileNotFoundError: # if file is not found print information and return empty strings so the rest of program can run
         print("Error: 'file_names.txt' not found. Please ensure the file exists in the working directory.")
         return "", "", ""
 
 def read_config(config_file_name):
     try:
-        with open(config_file_name, "r") as file:
-            content = file.readlines()
+        with open(config_file_name, "r") as file: # open config file and assign info based on the name in index 0 for each line
+            content = file.readlines()            # return values will be in index 1 when split into lists
             max_length, min_length, start_letters, index_to_choose, max_attempts = [], [], [], [], []
             for line in content:
                 line = line.strip()
@@ -33,34 +33,34 @@ def read_config(config_file_name):
                 if "max_attempts" in line:
                     max_attempts = int(line.split()[1])
         return max_length, min_length, start_letters, index_to_choose, max_attempts
-    except FileNotFoundError:
+    except FileNotFoundError: # if the file is not  found, deliver information to console and return default  values so the program can still run
         print("File not found while executing read_config: Ensure the file exists in the working directory")
         max_length, min_length, start_letters, index_to_choose, max_attempts = 15, 1, "abc", 5, 6
         return max_length, min_length, start_letters, index_to_choose, max_attempts
 
 def load_words(words_file_name):
     try:
-        with open(words_file_name, "r") as file:
+        with open(words_file_name, "r") as file: #open and read words file and split into list of words to be returned
             words = file.read().split()
         return words
-    except FileNotFoundError:
+    except FileNotFoundError: # if the file is not found deliver info to console and return default list of words so there will still be a primitive game
         print("File not found while executing load_words: Ensure file exists in the working directory")
         words = ["adventure","chocolate","diversity","car","according","ear","kind","conserve","friendship","employment","analysis","emotional"]
         return words
 
 def choose_word(words, max_length, min_length, start_letters, index_to_choose):
     try:
-        filtered_words = []
+        filtered_words = [] # filter words from list based on specified config criteria
         for word in words:
             if min_length <= len(word) <= max_length and word[0] in start_letters:
                 filtered_words.append(word)
-        random.shuffle(filtered_words)
-        if len(filtered_words) >= index_to_choose:
+        random.shuffle(filtered_words) # shuffle words from filtered list
+        if len(filtered_words) >= index_to_choose: #if index is larger than filtered list just choose the last word
             word_to_guess = str(filtered_words[-1])
         else:
-            word_to_guess = str(filtered_words[index_to_choose])
+            word_to_guess = str(filtered_words[index_to_choose]) # if index to choose is in range, choose word from specified index
         return word_to_guess
-    except Exception as error:
+    except Exception as error: #if an error occurs, deliver info to console and pick a random unfiltered word 
         print("an Error occurred during choose_word:", error)
         word_to_guess = random.choice(words)
         return word_to_guess
