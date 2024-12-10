@@ -4,7 +4,7 @@ import random #used later
 
 def get_file_names():
     try:
-        with open("file_names.txt", "r") as file: # open file with name file_names.txt, split contents into a list
+        with open("file_names.txt", "r") as file: # Jack Chidlaw: open file with name file_names.txt, split contents into a list
             content = file.read()                 # assign the names of files accordingly based on index
             content = content.split()
             words_file_name = str(content[0].strip())
@@ -17,7 +17,7 @@ def get_file_names():
 
 def read_config(config_file_name):
     try:
-        with open(config_file_name, "r") as file: # open config file and assign info based on the name in index 0 for each line
+        with open(config_file_name, "r") as file: # Jack Chidlaw: open config file and assign info based on the name in index 0 for each line
             content = file.readlines()            # return values will be in index 1 when split into lists
             max_length, min_length, start_letters, index_to_choose, max_attempts = [], [], [], [], []
             for line in content:
@@ -40,7 +40,7 @@ def read_config(config_file_name):
 
 def load_words(words_file_name):
     try:
-        with open(words_file_name, "r") as file: #open and read words file and split into list of words to be returned
+        with open(words_file_name, "r") as file: #Jack Chidlaw: open and read words file and split into list of words to be returned
             words = file.read().split()
         return words
     except FileNotFoundError: # if the file is not found deliver info to console and return default list of words so there will still be a primitive game
@@ -50,7 +50,7 @@ def load_words(words_file_name):
 
 def choose_word(words, max_length, min_length, start_letters, index_to_choose):
     try:
-        filtered_words = [] # filter words from list based on specified config criteria
+        filtered_words = [] #Jack Chidlaw: filter words from list based on specified config criteria
         for word in words:
             if min_length <= len(word) <= max_length and word[0] in start_letters:
                 filtered_words.append(word)
@@ -67,7 +67,7 @@ def choose_word(words, max_length, min_length, start_letters, index_to_choose):
 
 def get_score(score_file_name):
     try:
-        with open(score_file_name, "r") as file: #read score file and get the score value
+        with open(score_file_name, "r") as file: #Jack Chidlaw: read score file and get the score value
             score = file.read().split()
             score = int(score[0])
         return score
@@ -78,10 +78,10 @@ def get_score(score_file_name):
 
 def display_word(word_to_guess, guessed_letters):
     displayed_word = " ".join(letter if letter in guessed_letters else "_" for letter in word_to_guess)
-    return displayed_word  # check if letters in word to guess has been guessed, if not display "_" in thier place
+    return displayed_word  #Jack Chidlaw: check if letters in word to guess has been guessed, if not display "_" in thier place
                            # no exception handling required 
 def guess_letter(new_guess, guessed_letters, word_to_guess):
-    if not new_guess.isalpha(): #if the new guess doesn't exist in english alphabet return gamestate 1
+    if not new_guess.isalpha(): #Jack Chidlaw: if the new guess doesn't exist in english alphabet return gamestate 1
         return 1
     if new_guess in guessed_letters: #if the new guess has already been guessed return gamestate 2
         return 2 
@@ -90,7 +90,7 @@ def guess_letter(new_guess, guessed_letters, word_to_guess):
 
 def end_game(word_to_guess, guessed_letters, incorrect_guesses, max_attempts):
     remaining_guesses = max_attempts - incorrect_guesses
-    if "_" not in display_word(word_to_guess, guessed_letters): #if no underscores in display word than game has been won, return gamestate 1
+    if "_" not in display_word(word_to_guess, guessed_letters): #Jack Chidlaw: if no underscores in display word than game has been won, return gamestate 1
         return 1
     if remaining_guesses == 0: #if player has run out of guessses return gamestate 2
         return 2
@@ -98,13 +98,13 @@ def end_game(word_to_guess, guessed_letters, incorrect_guesses, max_attempts):
         return 0
 
 def calculate_score(max_attempts, incorrect_guesses):
-    remaining_guesses = max_attempts - incorrect_guesses #calculate score based off of players remaining guesses
+    remaining_guesses = max_attempts - incorrect_guesses #Jack Chidlaw: calculate score based off of players remaining guesses
     score = remaining_guesses * 100
     return score
 
 def save_score(score_file_name, calculated_score):
     try:
-        with open(score_file_name, "r") as file: #read current high score from score file
+        with open(score_file_name, "r") as file: #Jack Chidlaw: read current high score from score file
             score = int(file.read().strip())
         if calculated_score > score: # if new score is higher, overwrite old score
             with open(score_file_name, "w") as file:
