@@ -65,51 +65,49 @@ def choose_word(words, max_length, min_length, start_letters, index_to_choose):
         word_to_guess = random.choice(words)
         return word_to_guess
 
-
-
 def get_score(score_file_name):
     try:
-        with open(score_file_name, "r") as file:
+        with open(score_file_name, "r") as file: #read score file and get the score value
             score = file.read().split()
             score = int(score[0])
         return score
-    except FileNotFoundError:
-        print("File not found while executing get_score: Ensure file exists")
+    except FileNotFoundError: # if score file is not found deliver info to console and default the score to 0
+        print("File not found while executing get_score: Ensure file exists in the working directory")
         score = 0
         return score
 
 def display_word(word_to_guess, guessed_letters):
     displayed_word = " ".join(letter if letter in guessed_letters else "_" for letter in word_to_guess)
-    return displayed_word
-
+    return displayed_word  # check if letters in word to guess has been guessed, if not display "_" in thier place
+                           # no exception handling required 
 def guess_letter(new_guess, guessed_letters, word_to_guess):
-    if not new_guess.isalpha():
+    if not new_guess.isalpha(): #if the new guess doesn't exist in english alphabet return gamestate 1
         return 1
-    if new_guess in guessed_letters:
-        return 2
-    if new_guess in word_to_guess and new_guess not in guessed_letters:
+    if new_guess in guessed_letters: #if the new guess has already been guessed return gamestate 2
+        return 2 
+    if new_guess in word_to_guess and new_guess not in guessed_letters: #if the new guess has not been guessed return gamestate 3
         return 3
 
 def end_game(word_to_guess, guessed_letters, incorrect_guesses, max_attempts):
     remaining_guesses = max_attempts - incorrect_guesses
-    if "_" not in display_word(word_to_guess, guessed_letters):
+    if "_" not in display_word(word_to_guess, guessed_letters): #if no underscores in display word than game has been won, return gamestate 1
         return 1
-    if remaining_guesses == 0:
+    if remaining_guesses == 0: #if player has run out of guessses return gamestate 2
         return 2
-    else:
+    else: #player is still playing, return gamestate 0
         return 0
 
 def calculate_score(max_attempts, incorrect_guesses):
-    remaining_guesses = max_attempts - incorrect_guesses
+    remaining_guesses = max_attempts - incorrect_guesses #calculate score based off of players remaining guesses
     score = remaining_guesses * 100
     return score
 
 def save_score(score_file_name, calculated_score):
     try:
-        with open(score_file_name, "r") as file:
+        with open(score_file_name, "r") as file: #read current high score from score file
             score = int(file.read().strip())
-        if calculated_score > score:
+        if calculated_score > score: # if new score is higher, overwrite old score
             with open(score_file_name, "w") as file:
                 file.write(str(calculated_score))
-    except FileNotFoundError:
+    except FileNotFoundError: # if score file is not found, deliver info to console and do nothing else
         print("File not found while executing save_score: Ensure file exists in working directory")
