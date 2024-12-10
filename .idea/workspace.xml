@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bda2a5f9-7f3b-461b-8f10-00f94ef06498" name="Changes" comment="get_file_names">
+    <list default="true" id="bda2a5f9-7f3b-461b-8f10-00f94ef06498" name="Changes" comment="its 2am. somebody rescue me, im beggin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_names.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/game_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/score2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/score2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/words.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +95,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733200495641</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="its 2am. somebody rescue me, im beggin">
+      <option name="closed" value="true" />
+      <created>1733734713888</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733734713888</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,6 +120,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initialised" />
     <MESSAGE value="get_file_names" />
-    <option name="LAST_COMMIT_MESSAGE" value="get_file_names" />
+    <MESSAGE value="its 2am. somebody rescue me, im beggin" />
+    <option name="LAST_COMMIT_MESSAGE" value="its 2am. somebody rescue me, im beggin" />
   </component>
 </project>

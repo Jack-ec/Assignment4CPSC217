@@ -1,3 +1,0 @@
-words.txt
-config2.txt
-score2.txt
