@@ -13,7 +13,7 @@ def get_file_names():
         return words_file_name, config_file_name, score_file_name
     except FileNotFoundError:
         print("Error: 'file_names.txt' not found. Please ensure the file exists in the working directory.")
-        return words_file_name, config_file_name, score_file_name
+        return "", "", ""
 
 def read_config(config_file_name):
     try:
